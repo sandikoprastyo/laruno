@@ -4,6 +4,7 @@ import Footer from '../../components/Footer/Footer';
 import Navbars from '../../components/Navbars/Navbars';
 import { RootContext } from '../../Routers';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function Checkout() {
   const handleClick = () => {};
@@ -20,10 +21,12 @@ function Checkout() {
               <p>Description : {value.description}</p>
               <p>Cost : {value.cost}</p>
             </div>
-            <button onClick={handleClick}>Click</button>
             <Link to='/'>
-              <button>Back</button>
+              <Button variant='danger'>Back</Button>
             </Link>
+            <Button variant='info' onClick={handleClick}>
+              Click
+            </Button>
             <Footer />
           </div>
         );

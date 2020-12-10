@@ -26,9 +26,9 @@ function Routers() {
     },
   });
   const [hasil, setHasil] = useState({
-    service: 'OKE',
-    description: 'Ongkos Kirim Ekonomis',
-    cost: 'tes',
+    service: null,
+    description: null,
+    cost: null,
   });
 
   const handleClickCheckOut = () => {
