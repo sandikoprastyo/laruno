@@ -4,8 +4,7 @@
   "description": "raja ongkir",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "pm2-runtime start ecosystem.config.js --env production",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,8 +20,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "node-rajaongkir": "^1.1.0",
-    "pm2": "^4.5.0"
+    "pm2": "^4.5.0",
+    "rajaongkir-node-js": "^2.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

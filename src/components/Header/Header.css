@@ -1,0 +1,39 @@
+.Header {
+    padding-top: 30px;
+}
+
+.left {
+    text-align: justify;
+}
+
+.title {
+    font-size: 2rem;
+    color: #F4821F;
+    font-weight: 900;
+    margin-top: 20%;
+    margin-right: 100px;
+    text-transform: uppercase;
+}
+
+.desc {
+    font-size: 16px;
+    letter-spacing: normal;
+    font-weight: 500;
+}
+
+span {
+    background-color: #6C63FF;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.button-learn-more {
+    -webkit-box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.2);
+}
+
+span:hover {
+    background-color: #655df3;
+}

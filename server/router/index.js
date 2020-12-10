@@ -1,70 +1,39 @@
 const express = require('express');
 const router = express.Router();
 require('dotenv/config');
-const RajaOngkir = require('node-rajaongkir').Starter(process.env.TOKEN);
+const { init } = require('rajaongkir-node-js');
+const request = init(process.env.TOKEN, 'starter');
 
 //!provinsi all
-router.get('/provinsi', (req, res) => {
-  RajaOngkir.getProvinces()
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((error) => {
-      res.json({ messages: error });
-    });
+router.get('/provinsi', function (req, res) {
+  const province = request.get('/province');
+  province.then((prov) => {
+    let js = JSON.parse(prov);
+    res.send(js);
+  });
 });
-
-//!provinsi:id
-router.get(`/provinsi/:id`, (req, res) => {
-  const id = req.params.id;
-  RajaOngkir.getProvince(id)
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((error) => {
-      res.json({ messages: error });
-    });
-});
-/* 
-//!kota all
-router.get(`/kota`, (req, res) => {
-  RajaOngkir.getCities()
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((error) => {
-      res.json({ messages: error });
-    });
-}); */
 
 //!kota id
-router.get('/kota/:id', (req, res) => {
-  const id = req.params.id;
-  RajaOngkir.getCity(id)
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((error) => {
-      res.json({ messages: error });
-    });
+router.get('/kota/:id', function (req, res) {
+  const allCityInProvince = request.get(`/city?&province=${req.params.id}`);
+  allCityInProvince.then((city) => {
+    let citi = JSON.parse(city);
+    res.send(citi);
+  });
 });
 
 //!cost
-router.post('/ongkir', (req, res) => {
+router.post('/ongkir', function (req, res) {
   const form = req.body;
-  const params = {
-    origin: form.origin, // ID Kota atau Kabupaten Asal
-    destination: form.destination, // ID Kota atau Kabupaten Tujuan
-    weight: form.weight, // Berat Barang dalam gram (gr)
-    courirer: form.courirer, // Kurir
+  const data = {
+    origin: form.origin,
+    destination: form.destination,
+    weight: form.weight,
+    courier: form.courier,
   };
-  RajaOngkir.getCosts(params)
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((error) => {
-      res.json({ messages: error });
-    });
+  const cost = request.post('cost', data);
+  cost.then((cst) => {
+    res.send(cst);
+  });
 });
-
 module.exports = router;

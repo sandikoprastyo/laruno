@@ -1,0 +1,11 @@
+.Navbar {
+    margin: 0;
+    padding: 0;
+}
+
+span {
+    background-color: #6C63FF;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+}

@@ -1,0 +1,14 @@
+.checkout {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.title-checkout {
+    padding: 60px;
+}
+
+.container-thankyou {
+    padding: 100px;
+    text-align: justify;
+}
