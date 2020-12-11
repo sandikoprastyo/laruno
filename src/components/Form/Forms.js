@@ -4,6 +4,7 @@ import './Forms.css';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { RootContext } from '../../Routers';
 
 const Forms = (props) => {
   const [nama, setNama] = useState([]);
@@ -34,10 +35,6 @@ const Forms = (props) => {
         console.log(`periksa koneksi anda ${error}`);
       });
   }, []);
-
-  const handleNama = () => {};
-  const handleEmail = () => {};
-  const handlePhone = () => {};
 
   /* //!Asal */
   const handleProvinsiAsal = (e) => {
@@ -124,24 +121,11 @@ const Forms = (props) => {
             <Form className='Form' onSubmit={handleSubmit}>
               <Form.Group controlId='formBasicEmail'>
                 <Form.Label>Nama</Form.Label>
-                <Form.Control
-                  type='text'
-                  placeholder='nama..'
-                  onChange={handleNama}
-                />
-
+                <Form.Control type='text' placeholder='nama..' />
                 <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type='email'
-                  placeholder='email..'
-                  onChange={handleEmail}
-                />
+                <Form.Control type='email' placeholder='email..' />
                 <Form.Label>Phone</Form.Label>
-                <Form.Control
-                  type='number'
-                  placeholder='phone'
-                  onChange={handlePhone}
-                />
+                <Form.Control type='number' placeholder='phone..' />
 
                 {/*  //!Provinsi asal */}
                 <Form.Label>Provinsi Asal</Form.Label>
@@ -200,7 +184,7 @@ const Forms = (props) => {
                 {/* //!kurir */}
                 <Form.Label>Kurir</Form.Label>
                 <Form.Control as='select' onChange={handleKurir} required>
-                  <option value='null'>Select kurir</option>
+                  <option value='undef'>Select kurir</option>
                   <option value='jne'>JNE</option>
                   <option value='pos'>POS</option>
                   <option value='tiki'>TIKI</option>

@@ -7,25 +7,37 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 function Checkout() {
-  const handleClick = () => {};
+  const handleClick = () => {
+    alert('Payment');
+  };
 
   return (
     <RootContext.Consumer>
       {(value) => {
+        console.log(value.hasil);
         return (
           <div className='checkout'>
             <Navbars />
             <h1 className='title-checkout'>Thank you</h1>
             <div className='container-thankyou'>
-              <p>Service : {value.service}</p>
-              <p>Description : {value.description}</p>
-              <p>Cost : {value.cost}</p>
+              <p>Nama : {value.name}</p>
+              <p>Email : {value.email}</p>
+              <p>Phone : {value.phone}</p>
+
+              <hr />
+              {/* {value.hasil.map((hsl, i) => (
+                <div className='hasil' key={i}>
+                  <p>Service : {hsl.service}</p>
+                  <p>Description : {hsl.description}</p>
+                  <p>Cost : {hsl.cost}</p>
+                </div>
+              ))} */}
             </div>
             <Link to='/'>
               <Button variant='danger'>Back</Button>
             </Link>
             <Button variant='info' onClick={handleClick}>
-              Click
+              Payment
             </Button>
             <Footer />
           </div>
