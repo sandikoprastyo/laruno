@@ -30,7 +30,13 @@ function Routers(props) {
       courier: '',
     },
   });
-  const [hasil, setHasil] = useState([]);
+  const [hasil, setHasil] = useState({
+    hasil: {
+      service: 'undefined',
+      description: 'undefined',
+      cost: 'undefined',
+    },
+  });
 
   useEffect(() => {
     axios
@@ -109,16 +115,19 @@ function Routers(props) {
         courier: data.courier,
       })
       .then((response) => {
-        console.log([response.data.rajaongkir.results[0].costs]);
+        //console.log([response.data.rajaongkir.results[0].costs]);
         setHasil([response.data.rajaongkir.results[0].costs]);
       })
       .then(() => {
         console.log(hasil);
+        console.log(hasil.service);
+        console.log(hasil.description);
+        console.log(hasil.cost);
       })
       .catch(function (error) {
         console.log(error);
       });
-    // window.location.replace('/checkout');
+    window.location.replace('/checkout');
   };
 
   return (

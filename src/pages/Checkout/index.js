@@ -32,6 +32,10 @@ function Checkout() {
                   <p>Cost : {hsl.cost}</p>
                 </div>
               ))} */}
+
+              <p>Service : {value.hasil.hasil.service}</p>
+              <p>Description : {value.hasil.hasil.description}</p>
+              <p>Cost : {value.hasil.hasil.cost}</p>
             </div>
             <Link to='/'>
               <Button variant='danger'>Back</Button>

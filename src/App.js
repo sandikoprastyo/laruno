@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -6,13 +6,43 @@ import Navbars from './components/Navbars/Navbars';
 import { withRouter } from 'react-router-dom';
 import Videos from './components/Video/Video';
 import { RootContext } from './Routers';
+import axios from 'axios';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 function App(props) {
+  // eslint-disable-next-line no-unused-vars
+  /*  const [data, setData] = useState({
+    data: {
+      origin: '',
+      destination: '',
+      weight: '',
+      courier: '',
+    },
+  });
+  const [hasil, setHasil] = useState([]); */
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    /*  axios
+      .post('https://nameless-shore-41059.herokuapp.com/ongkir', {
+        origin: data.origin,
+        destination: data.destination,
+        weight: data.weight,
+        courier: data.courier,
+      })
+      .then((response) => {
+        console.log([response.data.rajaongkir.results[0].costs]);
+        setHasil([response.data.rajaongkir.results[0].costs]);
+      })
+      .then(() => {
+        console.log(hasil);
+      })
+      .catch(function (error) {
+        console.log(error);
+      }); */
     props.history.push('/checkout');
   };
+
   return (
     <RootContext.Consumer>
       {(value) => {
