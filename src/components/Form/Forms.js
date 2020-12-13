@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-vars */
+/* not use */
 import React, { useState } from 'react';
 import './Forms.css';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { RootContext } from '../../Routers';
+import { RootContext } from '../../Context/RootedContext ';
 
 const Forms = (props) => {
   const [nama, setNama] = useState([]);
@@ -204,4 +203,4 @@ const Forms = (props) => {
   );
 };
 
-export default withRouter(Forms);
+export default Forms;

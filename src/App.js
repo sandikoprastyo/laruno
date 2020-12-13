@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -6,41 +6,16 @@ import Navbars from './components/Navbars/Navbars';
 import { withRouter } from 'react-router-dom';
 import Videos from './components/Video/Video';
 import { RootContext } from './Routers';
-import axios from 'axios';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 function App(props) {
-  // eslint-disable-next-line no-unused-vars
-  /*  const [data, setData] = useState({
-    data: {
-      origin: '',
-      destination: '',
-      weight: '',
-      courier: '',
-    },
-  });
-  const [hasil, setHasil] = useState([]); */
+  const RootContexts = useContext(RootContext);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    /*  axios
-      .post('https://nameless-shore-41059.herokuapp.com/ongkir', {
-        origin: data.origin,
-        destination: data.destination,
-        weight: data.weight,
-        courier: data.courier,
-      })
-      .then((response) => {
-        console.log([response.data.rajaongkir.results[0].costs]);
-        setHasil([response.data.rajaongkir.results[0].costs]);
-      })
-      .then(() => {
-        console.log(hasil);
-      })
-      .catch(function (error) {
-        console.log(error);
-      }); */
-    props.history.push('/checkout');
+  const handleSubmits = (e) => {
+    RootContexts.handleSubmit(e);
+    setTimeout(() => {
+      props.history.push('/checkout');
+    }, 3000);
   };
 
   return (
@@ -58,7 +33,7 @@ function App(props) {
                 <Row>
                   <Col></Col>
                   <Col className='form-input' lg={6} md={6} sm={12} xs={12}>
-                    <Form className='Form' onSubmit={handleSubmit}>
+                    <Form className='Form' onSubmit={handleSubmits}>
                       <Form.Group controlId='formBasicEmail'>
                         <Form.Label>Nama</Form.Label>
                         <Form.Control
@@ -66,6 +41,7 @@ function App(props) {
                           value={value.name}
                           placeholder='name..'
                           onChange={value.handleName}
+                          required
                         />
                         <Form.Label>Email</Form.Label>
                         <Form.Control
@@ -73,6 +49,7 @@ function App(props) {
                           value={value.email}
                           placeholder='email..'
                           onChange={value.handleEmail}
+                          required
                         />
                         <Form.Label>Phone</Form.Label>
                         <Form.Control
@@ -80,6 +57,7 @@ function App(props) {
                           value={value.phone}
                           placeholder='phone..'
                           onChange={value.handlePhone}
+                          required
                         />
 
                         <Form.Label>Provinsi Asal</Form.Label>
@@ -87,6 +65,7 @@ function App(props) {
                           as='select'
                           custom
                           onChange={value.handleProvinsiAsal}
+                          required
                         >
                           {value.provinsiTujuan.map((prov, i) => (
                             <option key={i} value={prov.province_id}>
@@ -100,6 +79,7 @@ function App(props) {
                           as='select'
                           custom
                           onChange={value.handleKotaAsal}
+                          required
                         >
                           {value.kotaAsal.map((kota, i) => (
                             <option key={i} value={kota.city_id}>
@@ -114,6 +94,7 @@ function App(props) {
                           as='select'
                           custom
                           onChange={value.handleProvinsiTujuan}
+                          required
                         >
                           {value.provinsiTujuan.map((prov, i) => (
                             <option key={i} value={prov.province_id}>
@@ -127,6 +108,7 @@ function App(props) {
                           as='select'
                           custom
                           onChange={value.handleKota}
+                          required
                         >
                           {value.kotaTujuan.map((kota, i) => (
                             <option key={i} value={kota.city_id}>
@@ -141,15 +123,16 @@ function App(props) {
                           type='number'
                           placeholder='1000 gram...'
                           onChange={value.handleBerat}
+                          required
                         />
 
                         <Form.Label>Kurir</Form.Label>
                         <Form.Control
+                          required
                           as='select'
                           onChange={value.handleKurir}
-                          required
                         >
-                          <option value='undef'>Select kurir</option>
+                          <option value='undefined'>Select kurir</option>
                           <option value='jne'>JNE</option>
                           <option value='pos'>POS</option>
                           <option value='tiki'>TIKI</option>
@@ -157,7 +140,7 @@ function App(props) {
                       </Form.Group>
 
                       <Button variant='primary' type='submit'>
-                        Submit
+                        {value.isloading !== false ? 'Loading...' : 'Submit'}
                       </Button>
                     </Form>
                   </Col>

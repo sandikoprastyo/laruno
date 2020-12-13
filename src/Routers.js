@@ -15,26 +15,21 @@ import axios from 'axios';
 export const RootContext = createContext();
 const Provider = RootContext.Provider;
 
-function Routers(props) {
+function Routers() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [kotaAsal, setKotaAsal] = useState([]);
   const [kotaTujuan, setKotaTujuan] = useState([]);
   const [provinsiTujuan, setProvinsiTujuan] = useState([]);
+  const [hasil, setHasil] = useState([]);
+  const [isloading, setLoading] = useState(false);
   const [data, setData] = useState({
     data: {
       origin: '',
       destination: '',
       weight: '',
       courier: '',
-    },
-  });
-  const [hasil, setHasil] = useState({
-    hasil: {
-      service: 'undefined',
-      description: 'undefined',
-      cost: 'undefined',
     },
   });
 
@@ -72,7 +67,6 @@ function Routers(props) {
     datas['origin'] = value;
   };
 
-  /* //!Tujuan  */
   const handleProvinsiTujuan = (e) => {
     const id = e.target.value;
     axios
@@ -86,7 +80,6 @@ function Routers(props) {
   };
 
   const handleKota = (e) => {
-    //setData['destination'](e.target.value);
     const datas = data;
     const value = e.target.value;
     datas['destination'] = value;
@@ -106,7 +99,7 @@ function Routers(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
+    setLoading(true);
     axios
       .post('https://nameless-shore-41059.herokuapp.com/ongkir', {
         origin: data.origin,
@@ -115,19 +108,13 @@ function Routers(props) {
         courier: data.courier,
       })
       .then((response) => {
-        //console.log([response.data.rajaongkir.results[0].costs]);
-        setHasil([response.data.rajaongkir.results[0].costs]);
+        const a = response.data.rajaongkir.results[0].costs;
+        setHasil(a);
       })
-      .then(() => {
-        console.log(hasil);
-        console.log(hasil.service);
-        console.log(hasil.description);
-        console.log(hasil.cost);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    window.location.replace('/checkout');
+      .catch((error) => console.log(error));
+    /* 
+      not use but need to refence
+     window.location.replace('/checkout'); */
   };
 
   return (
@@ -141,6 +128,7 @@ function Routers(props) {
         kotaTujuan,
         provinsiTujuan,
         handleName,
+        isloading,
         handleEmail,
         handlePhone,
         handleSubmit,
