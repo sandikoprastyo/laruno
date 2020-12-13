@@ -130,9 +130,9 @@ function App(props) {
 
                         <Form.Label>Kurir</Form.Label>
                         <Form.Control
-                          required
                           as='select'
                           onChange={value.handleKurir}
+                          required
                         >
                           <option value='undefined'>Select kurir</option>
                           <option value='jne'>JNE</option>

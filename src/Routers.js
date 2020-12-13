@@ -22,7 +22,7 @@ function Routers() {
   const [kotaAsal, setKotaAsal] = useState([]);
   const [kotaTujuan, setKotaTujuan] = useState([]);
   const [provinsiTujuan, setProvinsiTujuan] = useState([]);
-  const [hasil, setHasil] = useState([]);
+  const [hasil, setHasil] = useState(undefined);
   const [isloading, setLoading] = useState(false);
   const [data, setData] = useState({
     data: {
@@ -110,6 +110,9 @@ function Routers() {
       .then((response) => {
         const a = response.data.rajaongkir.results[0].costs;
         setHasil(a);
+      })
+      .then(() => {
+        setLoading(false);
       })
       .catch((error) => console.log(error));
     /* 

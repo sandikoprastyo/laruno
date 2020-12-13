@@ -28,7 +28,14 @@ function Checkout() {
 
         //result jika state hasil undefined
         const ResultHasilUndefined = () => {
-          return <h1>GAGAl AMBIL DATA</h1>;
+          return (
+            <tr>
+              <td>Gagal mengambil data</td>
+              <td>Gagal mengambil data</td>
+              <td>Gagal mengambil data</td>
+              <td>Gagal mengambil data</td>
+            </tr>
+          );
         };
 
         console.log(value.hasil);
@@ -53,7 +60,7 @@ function Checkout() {
                   </tr>
                 </thead>
                 <tbody>
-                  {value.hasil === Object ? (
+                  {value.hasil === undefined ? (
                     <ResultHasilUndefined />
                   ) : (
                     <Result />
