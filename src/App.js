@@ -118,9 +118,11 @@ function App(props) {
                           ))}
                         </Form.Control>
 
-                        <Form.Label>Berat</Form.Label>
+                        <Form.Label>Berat Gram</Form.Label>
                         <Form.Control
                           type='number'
+                          min='100'
+                          step='100'
                           placeholder='1000 gram...'
                           onChange={value.handleBerat}
                           required
